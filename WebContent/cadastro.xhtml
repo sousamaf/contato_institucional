@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="Templates/TemplatePadrao.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:messages></p:messages>
+			<hr />
+			<h:panelGrid columns="3">
+				
+				<h:outputText id="txNome" value="Nome" for="nome"></h:outputText>
+				<h:inputText id="nome" label="Nome"
+					value="#{controllerCliente.cliente.nome}" required="true"
+					requiredMessage="Erro"></h:inputText>
+				<h:message for="nome"></h:message>
+
+				<h:outputText id="txEmail" value="Email" for="email"></h:outputText>
+				<h:inputText id="email" label="Email" value="#{cliente.email}"
+					required="true" requiredMessage="Erro">
+					<f:validateRegex
+						pattern="[a-z0-9\-\_\.]+@[a-z0-9\-\_\.]+[.]{1}[a-z]{2,3}"></f:validateRegex>
+				</h:inputText>
+				</h:inputText>
+				<h:message for="email"></h:message>
+
+
+
+				<h:outputText id="txEndereco" value="Endereco" for="Endereco"></h:outputText>
+				<h:inputText id="endereco" label="Endereco"
+					value="#{cliente.endereco}" required="true" requiredMessage="Erro"></h:inputText>
+				<h:message for="endereco"></h:message>
+				//pesquisar sobre converter
+				<p:selectOneMenu value="#{controllerCidade.e}" converter="">
+					<f:selectItem itemLabel="Estados" />
+					<f:selectItems value="#{controllerCidade.estados}" var="e"
+						itemLabel="#{e.estado}" itemValue="#{e}"  />
+
+				</p:selectOneMenu>
+
+				<p:selectManyMenu>
+
+				</p:selectManyMenu>
+
+				<h:outputText></h:outputText>
+				<h:commandButton value="Salvar" action="#{cliente.salvar}"></h:commandButton>
+			</h:panelGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
